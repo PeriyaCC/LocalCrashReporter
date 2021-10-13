@@ -16,6 +16,7 @@ import androidx.core.content.FileProvider;
 
 import com.library.AppUtils;
 import com.library.BuildConfig;
+import com.library.CrashReporter;
 import com.library.FileUtils;
 import com.library.R;
 
@@ -95,8 +96,8 @@ public class LogMessageActivity extends AppCompatActivity {
 
     private void shareCrashReport(String filePath) {
         File file = new File(filePath);
-        String appId = "com.cc.localcrashreporter";
-        String authority = String.format("%s.provider",appId);
+
+        String authority = String.format("%s.provider",CrashReporter.getPackName());
         Uri fileUri = FileProvider.getUriForFile(this, authority, file);
 
         Intent intent = new Intent(Intent.ACTION_SEND);

@@ -12,6 +12,8 @@ public class CrashReporter {
 
     private static String crashReportPath;
 
+    private static String packName;
+
     private static boolean isNotificationEnabled = true;
 
     private CrashReporter() {
@@ -25,6 +27,7 @@ public class CrashReporter {
 
     public static void initialize(Context context, String crashReportSavePath) {
         applicationContext = context;
+        packName = context.getPackageName();
         crashReportPath = crashReportSavePath;
         setUpExceptionHandler();
     }
@@ -44,6 +47,10 @@ public class CrashReporter {
             }
         }
         return applicationContext;
+    }
+
+    public static String getPackName() {
+        return packName;
     }
 
     public static String getCrashReportPath() {
