@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.library">
+
+    <application>
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_path" />
+        </provider>
+
+        <provider
+            android:name=".CrashReporterInitProvider"
+            android:authorities="${applicationId}.CrashReporterInitProvider"
+            android:enabled="true"
+            android:exported="false" />
+
+        <activity
+            android:name="com.library.ui.CrashReporterActivity"
+            android:launchMode="singleTask"
+            android:taskAffinity="com.balsikandar.android.task"
+            android:theme="@style/Theme.LocalCrashReporter" />
+
+        <activity
+            android:name="com.library.ui.LogMessageActivity"
+            android:parentActivityName="com.library.ui.CrashReporterActivity"
+            android:theme="@style/Theme.LocalCrashReporter" />
+    </application>
+
+</manifest>
